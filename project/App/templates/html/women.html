@@ -1,0 +1,16 @@
+{% extends 'html/header.html' %}
+{% block content %}
+{% load static %}
+<div class="container ">
+	<div class="row">
+		{% for j in da %}
+	<div class="card col-md-3">
+		<img class="card-img-top" src="{% static 'images/b.jpg' %}">
+		<h4 class="card-title">{{j.pname}}</h4>
+		<p class="card-text">Price:Rs{{j.price}}</p>
+		 {% endfor %}
+		</div>
+	</div>
+	{% endblock %}
+
+		 		

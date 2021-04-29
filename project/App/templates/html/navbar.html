@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">aboutus</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cn' %}">Contact us</a>
+      </li>
+    </ul>
+      <ul class="navbar-nav ml-auto" style="margin-right:120px">   
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'lgo' %}">Login</a>
+      </li>   
+    <ul>
+    {% elif user.role == 1 %}
+  
+    <li class="dropdown">
+  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">select category
+  </a>
+   <ul class="navbar-nav">
+  <div class="dropdown-menu">
+   
+    {% for i in data %}
+    <li>
+      <a href="#">{{i.id}}</a>
+       <a href="{% url 'sr' i.id %}" class="dropdown-item">{{i.cname}}</a>
+  
+     </li>
+      {% endfor %}
+    </ul>
+     </div>
+  </ul>
+    <ul class="navbar-nav ml-auto" style="margin-right:120px">
+    
+        <li class="dropdown">
+  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
+    {{user.username}}
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+    <a class="dropdown-item" href="{% url 'p' %}">profile</a>
+    <a class="dropdown-item" href="{% url 'log' %}">logout</a>
+  </div>
+</li>
+</ul>
+{% elif user.role == 2 %}
+<li class="nav-item">
+<a class="navbar-brand" href="{% url 'hct' %}">HandCraft</a>
+</li>
+<li class="nav-item">
+<a class="navbar-brand" href="{% url 'shd' %}">Workerdata</a>
+</li>
+  </ul>
+    <ul class="navbar-nav ml-auto" style="margin-right:120px">
+    
+        <li class="dropdown">
+  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
+    {{user.username}}
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+    <a class="dropdown-item" href="{% url 'p' %}">profile</a>
+    <a class="dropdown-item" href="{% url 'log' %}">logout</a>
+  </div>
+</li>
+</ul>
+{% else %}
+<li class="nav-item">
+        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">aboutus</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cn' %}">Contact us</a>
+      </li>
+      
+    </ul>
+      <ul class="navbar-nav ml-auto" style="margin-right:120px">    
+    <ul>
+      <li class="dropdown">
+  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
+    {{user.username}}
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'cg' %}">change password</a>
+    <a class="dropdown-item" href="{% url 'p' %}">profile</a>
+    <a class="dropdown-item" href="{% url 'log' %}">logout</a>
+  </div>
+</li>
+
+{% endif %}
+   </div>  
+</nav>
+
